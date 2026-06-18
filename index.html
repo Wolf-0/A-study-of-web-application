@@ -3,181 +3,162 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
 
-    <title>Quiz</title>
-    <script>
-    let Q = [
-    'Q.日本で一番高い山は？',
-    ' onclick="Q_(1);" >富士山',
-    ' onclick="Q_(2);" >北岳', 
-    ' onclick="Q_(2);" >奥穂高岳', 
-    '日本で一番高い山は富士山。なんと3,776Mもあります。',
-
-    'Q.アメリカ合衆国の首都はどこでしょう？', 
-    ' onclick="Q_(1);" >ワシントンDC',
-    ' onclick="Q_(2);" >ニューヨーク',
-    ' onclick="Q_(2);" >ロサンゼルス',
-    '常識といえば常識ですが、意外と間違いやすいのがこのクイズ。<br/>正解はワシントンDC。ニューヨークではりませんよ。',
-
-    'Q.世界三大珍味は何？', 
-    ' onclick="Q_(2);" >うに、からすみ、このわた',
-    ' onclick="Q_(2);" >すし、らーめん、てんぷら',
-    ' onclick="Q_(1);" >フォアグラ、キャビア、トリュフ',
-    '世界三大珍味は一般的にキャビア・フォアグラ・トリュフと言われています。',
-
-    'Q.次のうち、イタリアにないものなーんだ？', 
-    ' onclick="Q_(2);" >ピザ',
-    ' onclick="Q_(2);" >アクアパッツァ',
-    ' onclick="Q_(1);" >ナポリタン',
-    '正解はナポリタン。ナポリにナポリタンはありません！',
-
-    'Q.日本で初めてノーベル賞を取った人は誰でしょう？', 
-    ' onclick="Q_(2);" >川端康成',
-    ' onclick="Q_(1);" >湯川秀樹',
-    ' onclick="Q_(2);" >佐藤栄作',
-    '日本初のノーベル賞を受賞したのは湯川秀樹さん。',
-
-    'Q.ハロウィンで子供がお菓子を貰うお馴染みのセリフはなーんだ？', 
-    ' onclick="Q_(2);" >ハッピーハロウィーン',
-    ' onclick="Q_(1);" >トリック・オア・トリート ',
-    ' onclick="Q_(2);" >メリークリスマス',
-    '「お菓子をくれなきゃイタズラするよ」でおなじみのこのフレーズ。<br/>ハロウィーンは、もともと古代ケルト民族でのサウィン祭りが起源といわれています。'
-];
-    let r_1 = Q.length / 5;//クイズを出すための変数
-    let r_2 = Math.floor( Math.random() * r_1 ) ;
-    let R = (r_2 * 5) ;//クイズを出すための変数
-
-
-//次の問題を表示するためのプログラムです
-function Q_(oxq) {
-
-	if (oxq === 0){
-	
-	 r_1 = Q.length / 5;
-	 r_2 = Math.floor( Math.random() * r_1 );
-	 R = (r_2 * 5);
-
- 	 document.getElementById("ox").innerHTML = '';
-	 document.getElementById("quiz").innerHTML = '';
-
-	 quiz = document.getElementById('quiz');
-	 quiz.insertAdjacentHTML('afterbegin', '<p>'+Q[R]+'</p>');
-	 quiz.insertAdjacentHTML('beforeend', '<button class="option"'+Q[R+1]+'</button><span></span><br/>');
-	 quiz.insertAdjacentHTML('beforeend', '<button class="option"'+Q[R+2]+'</button><span></span><br/>');
-	 quiz.insertAdjacentHTML('beforeend', '<button class="option"'+Q[R+3]+'</button><span></span><br/>');
-
-	} else if (oxq === 1) {//正解時の実行プログラムです
- 	 document.getElementById("ox").innerHTML = '<p class="Correct">正解！</p>';
-	 document.getElementById("quiz").innerHTML = '<p>'+Q[R+4]+'</p>';
- 	 document.getElementById("next").innerHTML = '<p><button class="next" onClick="Q_(0);">次の問題へ</button></p>';
-
-	} else if (oxq === 2) {//失敗時の実行プログラムです
- 	 document.getElementById("ox").innerHTML = '<p class="Incorrect">不正解！</p>';
-	 document.getElementById("quiz").innerHTML = '<p>'+Q[R+4]+'</p>';
- 	 document.getElementById("next").innerHTML = '<p><button class="next" onClick="Q_(0);">次の問題へ</button></p>';
-	}
-}
-function keypress_ivent(e) {
-    if (e.key === 'a' || e.key === 'A') {
-        Q_(0);
-    }
-}
-</script>
-    <style>
-    body {
-        background-color: #269;
-        background-image:
-        linear-gradient(rgba(255,255,255,.5) 2px, transparent 2px),
-        linear-gradient(90deg, rgba(255,255,255,.5) 2px, transparent 2px),
-        linear-gradient(rgba(255,255,255,.28) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.28) 1px, transparent 1px);
-        background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
-        background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
-    }
-    .quiz {
-        font-size: 30px;
-        color: #fff;
-        text-align: center;
-    }
-    .title {
-        font-size: 50px;
-        color: #fff;
-    }
-    .option {
-        display: inline-block;
-        width: 500px;
-        height: 60px;
-        font-size: 20px;
-        font-weight: bold;
-        text-decoration: none;
-        border-radius: 4px;
-        margin: 10px 0px 10px 0px;
-        color: #ffffff;
-        background-image: linear-gradient(#6795fd 0%, #67ceff 100%);
-        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
-        border-bottom: solid 3px #5e7fca;
-    }
-    .Correct {
-        font-size: 40px;
-        font-weight: bold;
-        color: #0f0;
-        text-align: center;
-    }
-    .Incorrect {
-        font-size: 40px;
-        font-weight: bold;
-        color: #f00;
-        text-align: center;
-    }
-    .span{
-        margin-top: 10px;
-    }
-    .next {
-        display: inline-block;
-        width: 200px;
-        height: 50px;
-        font-size: 20px;
-        font-weight: bold;
-        text-decoration: none;
-        border-radius: 4px;
-        margin: 10px 0px 10px 0px;
-        color: #ffffff;
-        background-image: linear-gradient(#6795fd 0%, #67ceff 100%);
-        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
-        border-bottom: solid 3px #5e7fca;
-        text-align: center;
-    }
-    .footer {
-        background-color: #666;
-        height: 60px;
-        color: #fff;
-        position: fixed; /* ビューポートに対して固定 */
-        bottom: 0;       /* 下端に配置 */
-        left: 0;         /* 左端に揃える */
-        width: 100%;  
-        font-size: 20px;
-        align-items: center;
-        align-content: center;
-        text-align: center;
-    }
-    </style>
+    <title>得点管理画面 | NEP LEAGUE</title>
 </head>
 <body>
-    <h1 class="title">Quiz</h1>
-    <script>
-        document.addEventListener('keypress', keypress_ivent);
-        document.write('<p id="ox"></p>');
-        document.write('<p id="quiz" class="quiz">');
-        document.write(Q[R+0] +'<br/>');
-        document.write('<button class="option"'+ Q[R+1] +'</button><span></span><br/>');
-        document.write('<button class="option"'+ Q[R+2] +'</button><span></span><br/>');
-        document.write('<button class="option"'+ Q[R+3] +'</button><span></span><br/>');
-        document.write('</p>');
-        document.write('<p id="next"><button class="next" onClick="Q_(0);">次の問題へ</button></p>');
-    </script>
-
-    <footer class="footer">
-        &copy; Ultra. All Rights Reserved.
-    </footer>
+    <div class="select-score-wrapper">
+        <h1 class="title">
+            [SCR04] 得点管理 / Score Management
+        </h1>
+        <select name="score" id="select-score" class="select-score">
+            <option value="" disabled selected>得点を入力</option>
+            <option value="1">1点</option>
+            <option value="2">2点</option>
+            <option value="3">3点</option>
+            <option value="4">4点</option>
+            <option value="5">5点</option>
+        </select>
+        <span class="score_error hidden" id="score_error">得点が入力されていません</span>
+    </div>
+    <div class="tab" id ="js-tab">
+        <div class="tab-nav">
+            <a href="" class="tab-nav-item" data-nav="0">1人目</a>
+            <a href="" class="tab-nav-item" data-nav="1">2人目</a>
+            <a href="" class="tab-nav-item" data-nav="2">3人目</a>
+            <a href="" class="tab-nav-item" data-nav="3">4人目</a>
+        </div>
+        <div class="tab-c">
+            <div class="tab-c-item 0" data-content="0">
+                <h3>1人目の学年とクラスを選択してください</h3>
+                <div class="select-grade">
+                    学年
+                    <input type="radio" class="radio" name="1-grade" id="grade1-1">
+                    <label class="label" for="grade1-1">1</label>
+                    <input type="radio" class="radio" name="1-grade" id="grade1-2">
+                    <label class="label" for="grade1-2">2</label>
+                    <input type="radio" class="radio" name="1-grade" id="grade1-3">
+                    <label class="label" for="grade1-3">3</label>
+                </div>
+                <div class="select-classroom">
+                    クラス
+                    <input type="radio" class="radio" name="1-class" id="class1-1">
+                    <label class="label" for="class1-1">1</label>
+                    <input type="radio" class="radio" name="1-class" id="class1-2">
+                    <label class="label" for="class1-2">2</label>
+                    <input type="radio" class="radio" name="1-class" id="class1-3">
+                    <label class="label" for="class1-3">3</label>
+                    <input type="radio" class="radio" name="1-class" id="class1-4">
+                    <label class="label" for="class1-4">4</label>
+                    <input type="radio" class="radio" name="1-class" id="class1-5">
+                    <label class="label" for="class1-5">5</label>
+                    <input type="radio" class="radio" name="1-class" id="class1-6">
+                    <label class="label" for="class1-6">6</label>
+                    <input type="radio" class="radio" name="1-class" id="class1-7">
+                    <label class="label" for="class1-7">7</label>
+                    <input type="radio" class="radio" name="1-class" id="class1-8">
+                    <label class="label" for="class1-8">8</label>
+                </div>
+            </div>
+            <div class="tab-c-item 1" data-content="1">
+                <h3>2人目の学年とクラスを選択してください</h3>
+                <div class="select-grade">
+                    学年
+                    <input type="radio" class="radio" name="2-grade" id="grade2-1">
+                    <label class="label" for="grade2-1">1</label>
+                    <input type="radio" class="radio" name="2-grade" id="grade2-2">
+                    <label class="label" for="grade2-2">2</label>
+                    <input type="radio" class="radio" name="2-grade" id="grade2-3">
+                    <label class="label" for="grade2-3">3</label>
+                </div>
+                <div class="select-classroom">
+                    クラス
+                    <input type="radio" class="radio" name="2-class" id="class2-1">
+                    <label class="label" for="class2-1">1</label>
+                    <input type="radio" class="radio" name="2-class" id="class2-2">
+                    <label class="label" for="class2-2">2</label>
+                    <input type="radio" class="radio" name="2-class" id="class2-3">
+                    <label class="label" for="class2-3">3</label>
+                    <input type="radio" class="radio" name="2-class" id="class2-4">
+                    <label class="label" for="class2-4">4</label>
+                    <input type="radio" class="radio" name="2-class" id="class2-5">
+                    <label class="label" for="class2-5">5</label>
+                    <input type="radio" class="radio" name="2-class" id="class2-6">
+                    <label class="label" for="class2-6">6</label>
+                    <input type="radio" class="radio" name="2-class" id="class2-7">
+                    <label class="label" for="class2-7">7</label>
+                    <input type="radio" class="radio" name="2-class" id="class2-8">
+                    <label class="label" for="class2-8">8</label>
+                </div>
+            </div>
+            <div class="tab-c-item 2" data-content="2">
+                <h3>3人目の学年とクラスを選択してください</h3>
+                <div class="select-grade">
+                    学年
+                    <input type="radio" class="radio" name="3-grade" id="grade3-1">
+                    <label class="label" for="grade3-1">1</label>
+                    <input type="radio" class="radio" name="3-grade" id="grade3-2">
+                    <label class="label" for="grade3-2">2</label>
+                    <input type="radio" class="radio" name="3-grade" id="grade3-3">
+                    <label class="label" for="grade3-3">3</label>
+                </div>
+                <div class="select-classroom">
+                    クラス
+                    <input type="radio" class="radio" name="3-class" id="class3-1">
+                    <label class="label" for="class3-1">1</label>
+                    <input type="radio" class="radio" name="3-class" id="class3-2">
+                    <label class="label" for="class3-2">2</label>
+                    <input type="radio" class="radio" name="3-class" id="class3-3">
+                    <label class="label" for="class3-3">3</label>
+                    <input type="radio" class="radio" name="3-class" id="class3-4">
+                    <label class="label" for="class3-4">4</label>
+                    <input type="radio" class="radio" name="3-class" id="class3-5">
+                    <label class="label" for="class3-5">5</label>
+                    <input type="radio" class="radio" name="3-class" id="class3-6">
+                    <label class="label" for="class3-6">6</label>
+                    <input type="radio" class="radio" name="3-class" id="class3-7">
+                    <label class="label" for="class3-7">7</label>
+                    <input type="radio" class="radio" name="3-class" id="class3-8">
+                    <label class="label" for="class3-8">8</label>
+                </div>
+            </div>
+            <div class="tab-c-item 3" data-content="3">
+                <h3>4人目の学年とクラスを選択してください</h3>
+                <div class="select-grade">
+                    学年
+                    <input type="radio" class="radio" name="4-grade" id="grade4-1">
+                    <label class="label" for="grade4-1">1</label>
+                    <input type="radio" class="radio" name="4-grade" id="grade4-2">
+                    <label class="label" for="grade4-2">2</label>
+                    <input type="radio" class="radio" name="4-grade" id="grade4-3">
+                    <label class="label" for="grade4-3">3</label>
+                </div>
+                <div class="select-classroom">
+                    クラス
+                    <input type="radio" class="radio" name="4-class" id="class4-1">
+                    <label class="label" for="class4-1">1</label>
+                    <input type="radio" class="radio" name="4-class" id="class4-2">
+                    <label class="label" for="class4-2">2</label>
+                    <input type="radio" class="radio" name="4-class" id="class4-3">
+                    <label class="label" for="class4-3">3</label>
+                    <input type="radio" class="radio" name="4-class" id="class4-4">
+                    <label class="label" for="class4-4">4</label>
+                    <input type="radio" class="radio" name="4-class" id="class4-5">
+                    <label class="label" for="class4-5">5</label>
+                    <input type="radio" class="radio" name="4-class" id="class4-6">
+                    <label class="label" for="class4-6">6</label>
+                    <input type="radio" class="radio" name="4-class" id="class4-7">
+                    <label class="label" for="class4-7">7</label>
+                    <input type="radio" class="radio" name="4-class" id="class4-8">
+                    <label class="label" for="class4-8">8</label>
+                </div>
+            </div>
+        </div>
+        <div class="submit-btn-wrapper">
+            <button class="submit-btn" id="js-submit-btn">送信</button>
+        </div>
+    </div>
+    <script src="./assets/js/index.js"></script>
 </body>
 </html>
